@@ -1,0 +1,68 @@
+-='cd -'
+..='cd ..'
+...='cd ../..'
+....=../../..
+.....=../../../..
+......=../../../../..
+1='cd -1'
+2='cd -2'
+3='cd -3'
+4='cd -4'
+5='cd -5'
+6='cd -6'
+7='cd -7'
+8='cd -8'
+9='cd -9'
+addall='git add .'
+breload='source ~/.bashrc'
+cat='bat '
+clrcache='sudo pacman -Scc'
+cls='clear && neofetch'
+commit='git commit -m'
+cpd='cp -iR'
+da='du -sch'
+df='df -h'
+dir='command ls -lSrah'
+egrep='grep -E --color=auto'
+fgrep='fgrep --color=auto'
+free='free -mt'
+grep='grep --color=auto'
+grs='git restore'
+gsh='git show'
+gst='git status'
+info='sudo pacman -Si '
+infox='sudo pacman -Sii '
+install='sudo pacman -S '
+ip='command ip -color=auto'
+l='exa -l --color=always --group-directories-first --icons'
+l.='exa -a | grep -E "^\."'
+la='exa -a --color=always --group-directories-first --icons'
+lad='command ls -d .*(/)'
+lh='command ls -hAl --color=auto -v'
+ll='exa -lah --color=always --group-directories-first --icons'
+ls='exa -al --color=always --group-directories-first --icons'
+lt='exa -aT --color=always --group-directories-first --icons'
+md='mkdir -p'
+naliases=n-aliases
+ncd=n-cd
+nenv=n-env
+new=modified
+nfunctions=n-functions
+nhelp=n-help
+nhistory=n-history
+nkill=n-kill
+noptions=n-options
+npanelize=n-panelize
+probe='sudo -E hw-probe -all -upload'
+pull='git pull origin'
+push='git push origin'
+rd=rmdir
+rg='batgrep '
+term2iso='echo '\''Setting terminal to iso mode'\'' ; print -n '\''\e%@'\'
+term2utf='echo '\''Setting terminal to utf-8 mode'\''; print -n '\''\e%G'\'
+update='sudo pacman -Syyu && flatpak update'
+userlist='cut -d: -f1 /etc/passwd'
+vim=nvim
+wget='wget -c'
+which-command=whence
+zreload='source ~/.zshrc'
