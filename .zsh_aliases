@@ -1,0 +1,66 @@
+alias ..='cd ..'
+alias ...='cd ../..'
+alias 1='cd -1'
+alias 2='cd -2'
+alias 3='cd -3'
+alias 4='cd -4'
+alias 5='cd -5'
+alias 6='cd -6'
+alias 7='cd -7'
+alias 8='cd -8'
+alias 9='cd -9'
+alias addall='git add .'
+alias clrcache='sudo pacman -Scc'
+alias cls='clear && neofetch'
+alias commit='git commit -m'
+alias config='~/programs/config.sh'
+alias cp='cp -iR'
+alias da='du -sch'
+alias df='df -h'
+alias dir='command ls -lSrah'
+alias egrep='grep -E --color=auto'
+alias fgrep='fgrep --color=auto'
+alias free='free -mt'
+alias grep='grep --color=auto'
+alias grs='git restore'
+alias gsh='git show'
+alias gst='git status'
+alias info='sudo pacman -Si '
+alias infox='sudo pacman -Sii '
+alias install='sudo pacman -S '
+alias ip='command ip -color=auto'
+alias l='exa -l --color=always --group-directories-first --icons'
+alias l.='exa -a | grep -E "^\."'
+alias la='exa -a --color=always --group-directories-first --icons'
+alias lad='command ls -d .*(/)'
+alias lh='command ls -hAl --color=auto -v'
+alias ll='exa -lah --color=always --group-directories-first --icons'
+alias ls='exa -al --color=always --group-directories-first --icons'
+alias lt='exa -aT --color=always --group-directories-first --icons'
+alias love='~/programs/squashfs-root/AppRun'
+alias md='mkdir -p'
+alias naliases=n-aliases
+alias ncd=n-cd
+alias nenv=n-env
+alias new=modified
+alias nfunctions=n-functions
+alias nhelp=n-help
+alias nhistory=n-history
+alias nkill=n-kill
+alias noptions=n-options
+alias npanelize=n-panelize
+alias probe='sudo -E hw-probe -all -upload'
+alias pull='git pull origin'
+alias push='git push origin'
+alias rd=rmdir
+alias term2iso='echo '\''Setting terminal to iso mode'\'' ; print -n '\''\e%@'\'
+alias term2utf='echo '\''Setting terminal to utf-8 mode'\''; print -n '\''\e%G'\'
+alias update='sudo pacman -Syyu && flatpak update'
+alias userlist='cut -d: -f1 /etc/passwd'
+alias vim=nvim
+alias wget='wget -c'
+alias which-command=whence
+alias zreload='cd ~ && source ~/.zshrc'
+alias zedit='nvim ~/.zshrc'
+alias c='z'
+alias cc='z -'

@@ -1,14 +1,14 @@
 vim.g.mapleader = ' '
-vim.keymap.set('n', '<leader>e', vim.cmd.NvimTreeFocus)
-vim.keymap.set('n', '<leader>E', vim.cmd.NvimTreeToggle)
-vim.keymap.set('n', '<leader>fe', vim.cmd.NvimTreeFindFile)
+vim.keymap.set('n', '<leader>e', vim.cmd.NvimTreeFocus, { desc='Focus Filetree' })
+vim.keymap.set('n', '<leader>E', vim.cmd.NvimTreeToggle, { desc='Toggle Filetree' })
+vim.keymap.set('n', '<leader>fe', vim.cmd.NvimTreeFindFile, { desc='Locate in Filetree' })
 
-vim.keymap.set('n', '<leader>sc', vim.cmd.Telescope)
+vim.keymap.set('n', '<leader>sc', vim.cmd.Telescope, { desc='Open Telescope' })
 
 -- love2d 
 local loveWindowOpen = false
 local loveWin,loveBuf = {},{}
-local loveCmd = '~/Coding/love2d/love.appimage . --console'
+local loveCmd = 'love . --console'
 local loveLoglevel = 'info'
 local loveRun = function()
     local opts = {
@@ -47,15 +47,18 @@ local chooseLoglevel = function()
     })
     print(tmp)
 end
-vim.keymap.set('n', '<leader>lr', loveRun)
-vim.keymap.set('n', '<leader>ll', chooseLoglevel)
+vim.keymap.set('n', '<leader>lr', loveRun, { desc='Run Love2D' })
+vim.keymap.set('n', '<leader>ll', chooseLoglevel, { desc='[WIP] Choose Loglevel' })
 
-vim.keymap.set('n', '<leader>bt', require('barbecue.ui').toggle)
+vim.keymap.set('n', '<leader>bt', require('barbecue.ui').toggle, { desc='Toggle Path Bar' })
 
 vim.keymap.set('n', '<leader>so', function() vim.cmd.w(); vim.cmd.so() end)
 
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc='Move Selection Down' })
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc='Move Selection Up' })
+
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr=true, silent=true })
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr=true, silent=true })
 
 vim.keymap.set('n', 'J', 'mzJ`z')
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
@@ -64,31 +67,31 @@ vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 
 -- greatest remap ever
-vim.keymap.set('x', '<leader>p', [["_dP]])
+vim.keymap.set('x', '<leader>p', '"_dP', { desc='FIND IN PRIMES VIDEO LOL' })
 
 -- next greatest remap ever : asbjornHaland
-vim.keymap.set({'n', 'v'}, '<leader>y', [["+y]])
-vim.keymap.set('n', '<leader>Y', [["+Y]])
+vim.keymap.set({'n', 'v'}, '<leader>y', '"+y', { desc='FIND IN PRIMES VIDEO LOL' })
+vim.keymap.set('n', '<leader>Y', '"+Y', { desc='FIND IN PRIMES VIDEO LOL' })
 
-vim.keymap.set({'n', 'v'}, '<leader>d', [["_d]])
+vim.keymap.set({'n', 'v'}, '<leader>d', '"_d', { desc='Void Deletion' })
 
 vim.keymap.set('n', 'Q', ':q<CR>')
-vim.keymap.set('n', '<leader>l', vim.lsp.buf.format)
+vim.keymap.set('n', '<leader>l', vim.lsp.buf.format, { desc='Format Current Buffer' })
 
 vim.keymap.set('n', '<C-k>', '<cmd>cnext<CR>zz')
 vim.keymap.set('n', '<C-j>', '<cmd>cprev<CR>zz')
 vim.keymap.set('n', '<leader>k', '<cmd>lnext<CR>zz')
 vim.keymap.set('n', '<leader>j', '<cmd>lprev<CR>zz')
 
-vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc='Rename all Occurances' })
 
 
-vim.keymap.set('n', '<leader>ta', ':$tabnew<CR>', { noremap = true })
-vim.keymap.set('n', '<leader>tc', ':tabclose<CR>', { noremap = true })
-vim.keymap.set('n', '<leader>to', ':tabonly<CR>', { noremap = true })
-vim.keymap.set('n', '<leader>tn', ':tabn<CR>', { noremap = true })
-vim.keymap.set('n', '<leader>tp', ':tabp<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>ta', ':$tabnew<CR>', { noremap = true, desc='New Tab' })
+vim.keymap.set('n', '<leader>tc', ':tabclose<CR>', { noremap = true, desc='Close Tab' })
+vim.keymap.set('n', '<leader>to', ':tabonly<CR>', { noremap = true, desc='Only One Tab' })
+vim.keymap.set('n', '<leader>tn', ':tabn<CR>', { noremap = true, desc='Next Tab' })
+vim.keymap.set('n', '<leader>tp', ':tabp<CR>', { noremap = true, desc='Prev Tab' })
 -- move current tab to previous position
-vim.keymap.set('n', '<leader>tmp', ':-tabmove<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>tmp', ':-tabmove<CR>', { noremap = true, desc='Move Tab Left' })
 -- move current tab to next position
-vim.keymap.set('n', '<leader>tmn', ':+tabmove<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>tmn', ':+tabmove<CR>', { noremap = true, desc='Move Tab Right' })
