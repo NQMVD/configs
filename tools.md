@@ -1,0 +1,25 @@
+# CLI Tools
+- exa
+- tmux
+- neofetch
+- nap
+- neovim
+- kakoune
+- micro
+- tldr
+- mc
+- bottom
+- toipe
+- wordgrinder
+- bat
+- ripgrep
+- fzf
+- zoxide
+- Entr
+- trash-cli
+- autojump
+- the fuck
+- xclip
+- gum
+- glow
+- lazygit
