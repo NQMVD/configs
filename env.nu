@@ -1,4 +1,5 @@
-$env.STARSHIP_SHELL = "nu"
+
+zoxide init nushell | save -f ~/.zoxide.nu
 
 def create_left_prompt [] {
     starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
@@ -10,9 +11,9 @@ $env.PROMPT_COMMAND_RIGHT = ""
 
 # The prompt indicators are environmental variables that represent
 # the state of the prompt
-$env.PROMPT_INDICATOR = ""
+$env.PROMPT_INDICATOR = "➜ "
 $env.PROMPT_INDICATOR_VI_INSERT = ": "
-$env.PROMPT_INDICATOR_VI_NORMAL = "〉"
+$env.PROMPT_INDICATOR_VI_NORMAL = "➜ "
 $env.PROMPT_MULTILINE_INDICATOR = "::: "
 
 # Specifies how environment variables are:
@@ -48,13 +49,23 @@ let-env NU_PLUGIN_DIRS = [
 # let-env PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
 
 $env.EDITOR = nvim
+alias vim = nvim
 
-alias la = ls -a
 alias cp = cp -r
 
-alias vim = nvim
+alias la = ls -a
+alias tree = exa -T --level=2
+alias treee = exa -T --level=3
+alias treeee = exa -T --level=4
+
+def clr [] { clear; cargo run }
+def clo [] { clear; oxide }
 def cls [] { clear; ls }
 def cla [] { clear; ls -a }
+def clt [] { clear; exa -T --level=2 }
+def cltt [] { clear; exa -T --level=3 }
+def clttt [] { clear; exa -T --level=4 }
+
 def fetch [] { clear; neofetch }
 
 def connect [] {
@@ -98,11 +109,27 @@ def switchvim [] {
     }
 }
 
+def cetch [tocetch?] {
+    if $tocetch == null {
+        
+    } else {
 
+    }
+}
 
 def choose [pool: list] {
+    # ➜ [test lol olo] | gum choose | parse "{sep1} {num} {sep2} {val} {sep3}"
+    # ╭───┬──────┬─────┬──────┬──────┬──────╮
+    # │ # │ sep1 │ num │ sep2 │ val  │ sep3 │
+    # ├───┼──────┼─────┼──────┼──────┼──────┤
+    # │ 0 │ │    │ 0   │ │    │ test │ │    │
+    # │   │      │     │      │      │      │
+    # ╰───┴──────┴─────┴──────┴──────┴──────╯
+    # DAS ISSES DIGGA WHOOOOHOOOO
+    # $env.config.table.mode = none; [nu pkgs nvim] | table | gum choose; $env.config.table.mode = rounded
+    
     let choice = ($pool | gum choose)
-    if $choice == '' { return (-1) }
+    if $choice == '' or ($choice | str contains "─") { return (-1) }
     let result = ($choice | split chars | $in.2? | into int)
     $result
 }
@@ -110,7 +137,7 @@ def choose [pool: list] {
 def conf [] {
     let configs = [nu pkgs nvim starship zellij tmux]
     let paths = [
-        '~/.config/nushell/env.nu',
+        $nu.env-path,
         '~/pkgs.toml',
         '~/.config/nvim',
         '~/.config/starship.toml',
@@ -118,12 +145,39 @@ def conf [] {
         '~/.config/tmux.conf'
     ]
     let choice = (choose $configs)
-    if $choice == (-1) {
-        return 
-    }
+    if $choice == (-1) { return }
     let path = ($paths | get $choice)
-    nvim $path
+    start $path
 }
+
+def clearpar [] {
+    "" | save -f "/tmp/result.md"
+    "Cleared temp result!"
+}
+
+def getpar [...paragraphs: int] {
+    let total = ($paragraphs | length)
+    if $total == 0 {
+        return "No Paragraphs provided!"
+    }
+    mut counter = 1
+    for $p in $paragraphs {
+        let PAR = ($p | into string)
+        let FILE = ("/tmp/output-" + $PAR + ".html")
+        let LINK = $"https://www.gesetze-im-internet.de/bgb/__($PAR).html"
+        # wget -O $FILE ("https://buergerliches-gesetzbuch.net/paragraph-" + $PAR)
+        gum spin --title $"Fetching [($counter)/($total)]..." --show-output -- wget -O $FILE $LINK
+        luajit /home/noah/Coding/lua/extractparagraph.lua $FILE "/tmp/result.md"
+        rm -rf $FILE
+        $counter = ($counter + 1)
+    }
+    clear
+    xclip -sel clip "/tmp/result.md"
+    glow "/tmp/result.md"
+
+    # kak "/tmp/result.md"
+}
+
 
 # Nixos aliases
 alias nixconf = sudoedit /etc/nixos/configuration.nix
